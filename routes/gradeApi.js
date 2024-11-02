@@ -1,20 +1,20 @@
 const express = require('express')
-const {Course} =require('../models/course')
-const {courseSchema} = require('../models/course')
+const {Grade} =require('../models/grade')
+const {gradeSchema} = require('../models/grade')
 const router  = express.Router()
 
 
 
 router.use(express.json())
 router.get('/',async(req,res)=> {
-        const course=await Course.find().sort()
-        res.send(course)
+        const grade=await Grade.find().sort()
+        res.send(grade)
         
 })
 router.get('/:id',async(req,res)=> {
-    const course=await Course.find({_id:req.params.id}).sort({name:1})
-    if(!course) return
-    res.send(course)
+    const grade=await Grade.findById(req.params.id)
+    if(!grade) return
+    res.send(grade)
     
 })
 
@@ -23,31 +23,31 @@ router.get('/:id',async(req,res)=> {
 
 
 router.post('/',async(req,res)=> {
-    const course=await new Course({
+    const grade=await new Grade({
         name:req.body.name,
     })
-    const addedCourse= await course.save()
-    res.send(addedCourse)
+    const addedgrade= await grade.save()
+    res.send(addedgrade)
     
 })
 
 router.put('/:id',async(req,res)=> {
-    const course=await Course.findById({_id:req.params.id}).sort({name:1})
-    if(!course) return
+    const grade=await Grade.findById({_id:req.params.id}).sort({name:1})
+    if(!grade) return
     if(req.body.name) {
-        course.name=req.body.name
+        grade.name=req.body.name
     }
    
    
-    let result = course.save()
+    let result = grade.save()
     res.send(result)
     
 })
 
 router.delete('/:id',async(req,res)=> {
-    const course= await Course.findByIdAndRemove(req.params.id)
-    if(!course) return
-    res.send(course)
+    const grade= await grade.findByIdAndRemove(req.params.id)
+    if(!grade) return
+    res.send(grade)
 
 
 })

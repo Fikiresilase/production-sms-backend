@@ -3,10 +3,18 @@ const studentSchema=mongoose.Schema({
     name:String ,
     email: String ,
     grade : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref :'grade',
+        id: mongoose.Schema.Types.ObjectId,
+        name:Number
+        
     } ,
-    section : String,
+    section: String,
+    course: [
+        {
+          id: mongoose.Schema.Types.ObjectId,
+          name: String,
+          grade: Number
+        }
+      ],
     password: String,
     parent : {
         type: mongoose.Schema.Types.ObjectId,

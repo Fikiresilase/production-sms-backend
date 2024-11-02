@@ -12,11 +12,13 @@ router.get('/',async(req,res)=> {
         
 })
 router.get('/:id',async(req,res)=> {
-    const teacher=await Teacher.find({_id:req.params.id}).sort({name:1})
+    const teacher=await Teacher.findById(req.params.id)
     if(!teacher) return
     res.send(teacher)
     
 })
+
+
 
 
 

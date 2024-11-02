@@ -23,7 +23,7 @@
       //see student grade
       //contact teacher
       //pay
-
+const cors=require('cors')
 const student= require('./routes/studentApi')
 const teacher= require('./routes/teacherApi')
 const parent= require('./routes/parentApi')
@@ -31,7 +31,8 @@ const school= require('./routes/schoolApi')
 const branch= require('./routes/branchApi')
 const course= require('./routes/courseApi')
 const grade= require('./routes/gradeApi')
-const admin= require('./routes/adminApi')
+const admin = require('./routes/adminApi')
+const register=require('./routes/register')
 const express=require('express')
 const mongoose= require('mongoose');
 const app = express()
@@ -40,15 +41,16 @@ mongoose.connect('mongodb://localhost/school')
 .then(()=>{console.log("connected to mongo")})
 .catch((err)=>{console.log('connection to database failed',err)})
 
-
-app.use('/api/school/branch/student/',student)
-app.use('/api/school/branch/teacher/',teacher)
-app.use('/api/school/branch/parent/',parent)
+app.use(cors())
+app.use('/api/student/',student)
+app.use('/api/teacher/',teacher)
+app.use('/api/parent/',parent)
 app.use('/api/school/branch/',branch)
-app.use('/api/school/branch/school/',school)
-app.use('/api/school/branch/admin/',admin)
-app.use('/api/school/branch/course/',course)
-app.use('/api/school/branch/grade/',grade)
+app.use('/api/school/',school)
+app.use('/api/branch/admin/',admin)
+app.use('/api/course/',course)
+app.use('/api/grade/', grade)
+app.use('/api/register/',register)
 
 
 

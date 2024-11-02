@@ -3,8 +3,17 @@ const teacherSchema = mongoose.Schema({
     name:String ,
     email: String ,
     password: String ,
-    grade:String ,
-    section:String ,
+    grade: [
+       {section: [String],
+        courses: {
+            id: [mongoose.Schema.Types.ObjectId],
+            name: String
+        },
+        id: [mongoose.Schema.Types.ObjectId],
+        name:Number
+
+    } ]
+    
   
 })
 const Teacher = new mongoose.model('teacher',teacherSchema)
