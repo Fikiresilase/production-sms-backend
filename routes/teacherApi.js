@@ -40,7 +40,8 @@ router.post('/',async(req,res)=> {
     
 })
 
-router.put('/:id',async(req,res)=> {
+router.put('/:id', async (req, res) => {
+    console.log(req.body)
     const teacher=await Teacher.findById({_id:req.params.id}).sort({name:1})
     if(!teacher) return
     if(req.body.name) {
@@ -50,7 +51,10 @@ router.put('/:id',async(req,res)=> {
         teacher.email=req.body.email
     }
     if(req.body.password) {
-        teacher.password=req.body.password
+        teacher.password=req.body.password 
+    }
+    if(req.body.grade) {
+        teacher.grade=req.body.grade
     }
     let result = teacher.save()
     res.send(result)
@@ -58,11 +62,11 @@ router.put('/:id',async(req,res)=> {
 })
 
 router.delete('/:id',async(req,res)=> {
-    const teacher= await Teacher.findByIdAndRemove(req.params.id)
+    const teacher= await Teacher.findByIdAndDelete(req.params.id)
     if(!teacher) return
-    res.send(teacher)
+    res.send(teacher) 
 
-
+ 
 })
 
 

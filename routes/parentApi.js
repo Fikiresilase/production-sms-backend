@@ -16,7 +16,7 @@ router.get('/:id',async(req,res)=> {
     if(!parent) return
     res.send(parent)
     
-})
+}) 
 
 
 

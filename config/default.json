@@ -1,0 +1,7 @@
+{
+    "dbURI": "mongodb://localhost/school",
+    "port": 3000,
+    "jwtSecret": "mydefaultsecretkey",
+    "nodeEnv": "development"
+  }
+  

@@ -8,6 +8,7 @@ const router  = express.Router()
 router.use(express.json())
 router.get('/',async(req,res)=> {
         const grade=await Grade.find().sort()
+        const count= await Grade.countDocuments()
         res.send(grade)
         
 })

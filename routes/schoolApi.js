@@ -24,7 +24,7 @@ router.get('/:id',async(req,res)=> {
 
 router.post('/',async(req,res)=> {
     const school=await new School({
-        name:req.body.name,
+        name:req.body.name, 
         branches: req.body.branches
     
 

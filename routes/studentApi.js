@@ -31,7 +31,7 @@ router.get('/grade/:grade/:section',async(req,res)=> {
     res.send(students)
     
 })    
-
+ 
 router.get('/teacher/:teacherId', async (req, res) => {
     const teacher = await Teacher.findById(req.params.teacherId)
     const teacherGrade = teacher.grade.map(g => g.name)
@@ -39,12 +39,11 @@ router.get('/teacher/:teacherId', async (req, res) => {
          const section = req.query.section
          const course = req.query.course
     if (!(req.query.grade) && !(req.query.section) && !(req.query.course)) {
-    
         if (!teacher) return
         const students = await Student.find({ 'grade.name': { $in: teacherGrade }})
         if (!students) return
         res.send(students)
-    }
+    } 
     
 
     else if ((req.query.grade) && (req.query.section) && (req.query.course)) {
@@ -78,11 +77,11 @@ router.get('/teacher/:teacherId', async (req, res) => {
             const students = await Student
                 .find().or([{ 'grade.name': grade }, { section: section }, { course: { $elemMatch: { name: course } } }])
             if (!students) return
-            else res.send(students)
-        }
+            else res.send(students) 
+        } 
        
 
-    }
+    } 
 }
      
 )
@@ -108,31 +107,31 @@ router.post('/',async(req,res)=> {
     
 })
 
-// router.put('/:id',async(req,res)=> {
-//     const student=await student.findById({_id:req.params.id}).sort({name:1})
-//     if(!student) return
-//     if(req.body.name) {
-//         student.name=req.body.name
-//     }
-//     if(req.body.email) {
-//         student.email=req.body.email
-//     }
-//     if(req.body.grade) {
-//         student.grade=req.body.grade
-//     }
-//     if(req.body.section) {
-//         student.section=req.body.section
-//     }
-//     if(req.body.parent) {
-//         student.parent=req.body.parent
-//     }
-//     if(req.body.password) {
-//         student.password=req.body.password
-//     }
-//     let result = student.save()
-//     res.send(result)
+router.put('/:id',async(req,res)=> {
+    const student=await Student.findById({_id:req.params.id}).sort({name:1})
+    if(!student) return
+    if(req.body.name) {
+        student.name=req.body.name
+    }
+    if(req.body.email) {
+        student.email=req.body.email
+    }
+    if(req.body.grade) {
+        student.grade=req.body.grade
+    }
+    if(req.body.section) {
+        student.section=req.body.section
+    }
+    if(req.body.parent) {
+        student.parent=req.body.parent
+    }
+    if(req.body.password) {
+        student.password=req.body.password
+    }
+    let result = student.save()
+    res.send(result)
     
-// })
+})
 
 router.put('/:studentId/course/:courseName', async (req, res) => {
    if (parseFloat(req.body.grade )> 100 || parseFloat(req.body.grade ) < 100) res.send(null) 
@@ -141,12 +140,12 @@ router.put('/:studentId/course/:courseName', async (req, res) => {
         { $set: {'course.$.grade':parseInt(req.body.grade)}})
      
 })
-
+ 
 router.delete('/:id',async(req,res)=> {
-    const student= await Student.findByIdAndRemove(req.params.body)
+    const student= await Student.findByIdAndDelete(req.params.id)
     if(!student) return
     res.send(student)
-
+ 
 })
 
 module.exports= router
