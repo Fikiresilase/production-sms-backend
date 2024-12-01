@@ -1,73 +1,12 @@
-const express = require('express')
-const {Teacher} =require('../models/teacher')
-const {teacherSchema} = require('../models/teacher')
-const router  = express.Router()
+const express = require('express');
+const router = express.Router();
+const teacherController = require('../controllers/teacherController');
 
 
-
-router.use(express.json())
-router.get('/',async(req,res)=> {
-        const teacher=await Teacher.find()
-        res.send(teacher)
-        
-})
-router.get('/:id',async(req,res)=> {
-    const teacher=await Teacher.findById(req.params.id)
-    if(!teacher) return
-    res.send(teacher)
-    
-})
-
-
-
-
-
-
-
-router.post('/',async(req,res)=> {
-    const teacher=await new Teacher({
-        name:req.body.name,
-        email: req.body.email ,
-        grade :req.body.grade,
-        section : req.body.section ,
-        password:req.body.password,
-        parent :req.body.parent
-    
-
-    })
-    const addedTeacher= await teacher.save()
-    res.send(addedStudent)
-    
-})
-
-router.put('/:id', async (req, res) => {
-    console.log(req.body)
-    const teacher=await Teacher.findById({_id:req.params.id}).sort({name:1})
-    if(!teacher) return
-    if(req.body.name) {
-        teacher.name=req.body.name
-    }
-    if(req.body.email) {
-        teacher.email=req.body.email
-    }
-    if(req.body.password) {
-        teacher.password=req.body.password 
-    }
-    if(req.body.grade) {
-        teacher.grade=req.body.grade
-    }
-    let result = teacher.save()
-    res.send(result)
-    
-})
-
-router.delete('/:id',async(req,res)=> {
-    const teacher= await Teacher.findByIdAndDelete(req.params.id)
-    if(!teacher) return
-    res.send(teacher) 
-
- 
-})
-
+router.get('/', teacherController.getAllTeachers);
+router.get('/:id', teacherController.getTeacherById);
+router.post('/', teacherController.createTeacher);
+router.put('/:id', teacherController.updateTeacher);
+router.delete('/:id', teacherController.deleteTeacher);
 
 module.exports = router;

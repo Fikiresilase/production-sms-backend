@@ -1,6 +1,6 @@
 const express = require('express')
-const {Branch} =require('../models/branch')
-const {branchSchema} = require('../models/branch')
+const {Branch} =require('../../models/branch')
+const {branchSchema} = require('../../models/branch')
 const router  = express.Router()
 
 
@@ -11,17 +11,6 @@ router.get('/',async(req,res)=> {
         res.send(branch)
         
 })
-// router.get('/:id',async(req,res)=> {
-//     const branch=await Branch.find({_id:req.params.id}).sort({name:1})
-//     if(!branch) return
-//     res.send(branch)
-    
-// })
-
-
-
-
-
 
 router.post('/',async(req,res)=> {
     const branch=await new Branch({

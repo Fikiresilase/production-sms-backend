@@ -31,6 +31,8 @@ mongoose.connect(config.dbURI, { useNewUrlParser: true, useUnifiedTopology: true
 app.use(express.json());
 app.use(cors());
 
+
+
 app.use('/api/student', studentRoutes);
 app.use('/api/teacher', teacherRoutes);
 app.use('/api/parent', parentRoutes);
