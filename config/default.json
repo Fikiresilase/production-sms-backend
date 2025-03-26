@@ -1,5 +1,5 @@
 {
-    "dbURI": "mongodb+srv://noahkelemework:Borphoricon@1994@cluster0.bye4a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "dbURI": "mongodb+srv://noahkelemework:Borphoricon@1994@cluster0.bye4a.mongodb.net/sma?retryWrites=true&w=majority&appName=Cluster0",
     "port": 3000,
     "jwtSecret": "",
     "nodeEnv": "development"
