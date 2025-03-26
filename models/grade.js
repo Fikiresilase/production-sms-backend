@@ -3,8 +3,8 @@ const gradeSchema = mongoose.Schema({
     label:Number,
     section:[String],
     course: {
-        type:[mongoose.Schema.Types.ObjectId],
-        ref:'course'
+        name: String,
+        addedToAverage: Boolean
     }
 
 })

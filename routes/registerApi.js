@@ -41,8 +41,8 @@ router.post(
         name,
         email,
         section,
-        password: hashedPassword,
-        grade: grade !== undefined ? grade : null, // If grade is provided, save it; otherwise, set it to null
+        password: hashedPassword, 
+        grade: grade !== undefined ? grade : null,
       });
 
       await student.save();

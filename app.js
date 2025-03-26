@@ -5,14 +5,12 @@ const config = require('./config/config');
 const errorHandler = require('./middleware/errorHandler');
 
 const {
+    authRoutes,
     studentRoutes,
     teacherRoutes,
     parentRoutes,
-    schoolRoutes,
-    branchRoutes,
     courseRoutes,
     gradeRoutes,
-    adminRoutes,
     registerRoutes,
     scheduleRoutes
 } = require('./routes'); 
@@ -32,13 +30,10 @@ app.use(express.json());
 app.use(cors());
 
 
-
+app.use('/api/auth', authRoutes);
 app.use('/api/student', studentRoutes);
 app.use('/api/teacher', teacherRoutes);
 app.use('/api/parent', parentRoutes);
-app.use('/api/school/branch', branchRoutes);
-app.use('/api/school', schoolRoutes);
-app.use('/api/branch/admin', adminRoutes);
 app.use('/api/course', courseRoutes);
 app.use('/api/grade', gradeRoutes);
 app.use('/api/register', registerRoutes);

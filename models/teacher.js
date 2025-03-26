@@ -4,13 +4,13 @@ const teacherSchema = mongoose.Schema({
     email: String ,
     password: String ,
     grade: [
-       {section: [String],
-        courses: {
+       {
+        section: [String],
+        course: [{
             id: [mongoose.Schema.Types.ObjectId],
             name: String
-        },
-        id: [mongoose.Schema.Types.ObjectId],
-        name:Number
+        }],
+        name:Number        
 
     } ]
     

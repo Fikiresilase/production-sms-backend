@@ -1,7 +1,7 @@
 const express = require('express')
 const {Parent} =require('../models/parent')
 const {parentSchema} = require('../models/parent')
-const router  = express.Router()
+const router  = express.Router() 
 
 
 
@@ -9,7 +9,6 @@ router.use(express.json())
 router.get('/',async(req,res)=> {
         const parent=await Parent.find().sort()
         res.send(parent)
-        
 })
 router.get('/:id',async(req,res)=> {
     const parent=await Parent.find({_id:req.params.id}).sort({name:1})
@@ -17,10 +16,6 @@ router.get('/:id',async(req,res)=> {
     res.send(parent)
     
 }) 
-
-
-
-
 
 router.post('/',async(req,res)=> {
     const parent=await new Parent({
