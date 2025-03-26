@@ -1,6 +1,6 @@
 const config=require('config')
 const express = require("express");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 const User = require("../models/user");
 const Student = require("../models/student");
 const Parent = require("../models/parent");
