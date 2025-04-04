@@ -1,7 +1,6 @@
 {
-    "dbURI": "mongodb+srv://noahkelemework:Borphoricon%401994@cluster0.bye4a.mongodb.net/sma?retryWrites=true&w=majority&appName=Cluster0",
-    "port": 3000,
-    "jwtSecret": "mydevelopmentsecretkey",
-    "nodeEnv": "development"
-  }
-  
+  "dbURI": "",
+  "port": 3000,
+  "jwtSecret": "",
+  "nodeEnv": "production"
+}

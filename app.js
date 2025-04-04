@@ -16,7 +16,8 @@ const {
 } = require('./routes'); 
 
 const app = express();
-
+app.use(express.json());
+app.use(cors());
 
 mongoose.connect(config.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
@@ -26,8 +27,7 @@ mongoose.connect(config.dbURI, { useNewUrlParser: true, useUnifiedTopology: true
     });
 
 
-app.use(express.json());
-app.use(cors());
+
 
 
 app.use('/api/auth', authRoutes);
