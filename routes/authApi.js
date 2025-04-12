@@ -2,10 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models/user'); 
-const router  = express.Router()
-
-
-const JWT_SECRET = 'jwtSecret'
+const config = require('../config/config');
+const router = express.Router();
 
 
 
@@ -23,7 +21,7 @@ router.post("/login", async (req, res) => {
       if (!isPasswordValid) {
         return res.status(400).json({ message: "Invalid credentials!" });
       }
-      const token= jwt.sign({user},config.get("jwtSecret"))
+      const token = jwt.sign({user}, config.jwtSecret)
   
       return res.status(200).json({ message: "Login successful", token: token });
     } catch (error) {
@@ -31,5 +29,10 @@ router.post("/login", async (req, res) => {
     }
   });
 
+
+// Health check endpoint for Railway deployment
+router.get('/', (req, res) => {
+  res.status(200).json({ status: 'success', message: 'Auth service is running' });
+});
 
 module.exports = router;

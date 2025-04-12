@@ -42,6 +42,6 @@ app.use('/api/schedule', scheduleRoutes);
 app.use(errorHandler)
 
 const port = process.env.PORT || config.port;
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running on port ${port} in ${config.nodeEnv} mode.`);
 });
