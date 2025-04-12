@@ -1,25 +1,24 @@
+// Load environment variables first
+require('dotenv').config();
 const config = require('config');
 
-// Function to safely get config with fallback to environment variables
-const safeGet = (key, envKey) => {
-    try {
-        return config.has(key) ? config.get(key) : process.env[envKey];
-    } catch (error) {
-        return process.env[envKey];
-    }
-};
+// MongoDB URI fix - direct access to environment variable
+const dbURI = process.env.MONGODB_URI;
 
+// Basic configuration with environment variables prioritized
 const appConfig = {
-    // Always check direct environment variables as fallback
-    dbURI: process.env.MONGODB_URI || safeGet('dbURI', 'MONGODB_URI'),
-    port: process.env.PORT || safeGet('port', 'PORT') || 3000,
-    jwtSecret: process.env.JWT_SECRET || safeGet('jwtSecret', 'JWT_SECRET'),
-    nodeEnv: process.env.NODE_ENV || safeGet('nodeEnv', 'NODE_ENV') || 'development'
+    dbURI: dbURI, // Direct from environment
+    port: process.env.PORT || 3000,
+    jwtSecret: process.env.JWT_SECRET,
+    nodeEnv: process.env.NODE_ENV || 'development'
 };
 
-// Log config for debugging (excluding sensitive values)
+// Debugging information
 console.log(`Environment: ${appConfig.nodeEnv}`);
 console.log(`Port: ${appConfig.port}`);
 console.log(`MongoDB URI is ${appConfig.dbURI ? 'set' : 'NOT SET'}`);
+if (appConfig.dbURI) {
+    console.log(`MongoDB URI format check: ${appConfig.dbURI.startsWith('mongodb://') || appConfig.dbURI.startsWith('mongodb+srv://') ? 'valid' : 'INVALID FORMAT'}`);
+}
 
 module.exports = appConfig;
