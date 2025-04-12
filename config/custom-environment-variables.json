@@ -1,5 +1,5 @@
 {
-    "dbURI": "MONGODB_URI",
+    "dbURI": "DB_URI",
     "jwtSecret": "JWT_SECRET",
     "port": "PORT",
     "nodeEnv": "NODE_ENV"

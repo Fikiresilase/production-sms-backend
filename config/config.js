@@ -2,8 +2,8 @@
 require('dotenv').config();
 const config = require('config');
 
-// MongoDB URI fix - direct access to environment variable
-const dbURI = process.env.MONGODB_URI;
+// Use the actual environment variable names from .env file
+const dbURI = process.env.DB_URI; // Changed from MONGODB_URI to DB_URI
 
 // Basic configuration with environment variables prioritized
 const appConfig = {
