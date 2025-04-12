@@ -1,4 +1,6 @@
 {
-    "jwtSecret": "thisIsSecret" 
+    "dbURI": "MONGODB_URI",
+    "jwtSecret": "JWT_SECRET",
+    "port": "PORT",
+    "nodeEnv": "NODE_ENV"
 }
-  
