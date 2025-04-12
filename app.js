@@ -19,10 +19,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Connect to MongoDB using the URI from config
 mongoose.connect(config.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB'))
+    .then(() => console.log('Connected to MongoDB successfully'))
     .catch((err) => {
         console.error('Error connecting to MongoDB:', err);
+        console.error('Please check your MONGODB_URI environment variable in Railway');
         process.exit(1);
     });
 
