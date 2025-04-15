@@ -45,13 +45,17 @@ router.put('/:id',async(req,res)=> {
     
 })
 
-router.delete('/:id',async(req,res)=> {
-    const grade= await grade.findByIdAndRemove(req.params.id)
-    if(!grade) return
-    res.send(grade)
-
-
-})
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const grade = await Grade.findByIdAndRemove(req.params.id);
+        if (!grade) {
+            return res.status(404).json({ message: 'Grade not found' });
+        }
+        res.json({ message: 'Grade deleted successfully', grade });
+    } catch (err) {
+        next(err); 
+    }
+});
 
 
 module.exports = router;
