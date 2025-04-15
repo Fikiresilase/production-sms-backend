@@ -49,7 +49,7 @@ const appConfig = {
 console.log('=== App Configuration ===');
 console.log(`Environment: ${appConfig.nodeEnv}`);
 console.log(`Port: ${appConfig.port}`);
-console.log(`MongoDB URI is ${appConfig.dbURI ? 'set' : 'NOT SET'}`);
+console.log(`MongoDB URI is ${appConfig.dbURI ? appConfig.dbURI : 'NOT SET'}`);
 if (appConfig.dbURI) {
     console.log(`MongoDB URI format check: ${appConfig.dbURI.startsWith('mongodb://') || appConfig.dbURI.startsWith('mongodb+srv://') ? 'valid' : 'INVALID FORMAT'}`);
 }
