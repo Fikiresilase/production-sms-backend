@@ -19,7 +19,6 @@ try {
         dbURI = process.env.MONGODB_URI || process.env.DATABASE_URL || process.env.MONGO_URL;
     }
 
-    // If still not found, try config module
     if (!dbURI && config.has('dbURI')) {
         console.log('Using dbURI from config module');
         dbURI = config.get('dbURI');
